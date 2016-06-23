@@ -1,0 +1,36 @@
+{
+  "name": "sockpolls",
+  "version": "1.0.0",
+  "description": "Polling for sockbot",
+  "main": "src/sockpolls.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-as-promised": "^5.3.0",
+    "eslint": "^2.13.1",
+    "istanbul": "^0.4.4",
+    "mocha": "^2.5.3",
+    "sinon": "^1.17.4",
+    "sinon-as-promised": "^4.0.0"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "test": "eslint . && npm run unit_tests",
+    "istanbul": "eslint .; istanbul cover node_modules/mocha/bin/_mocha -- --recursive -R nyan",
+    "mocha": "eslint .;mocha --recursive -R nyan",
+    "unit_tests": "istanbul cover node_modules/mocha/bin/_mocha --print both -- ./test/unitTests.js --recursive -R dot "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yamikuronue/SockBotPolls.git"
+  },
+  "author": "yamikuronue",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yamikuronue/SockBotPolls/issues"
+  },
+  "homepage": "https://github.com/yamikuronue/SockBotPolls#readme"
+}
