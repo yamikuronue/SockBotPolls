@@ -22,8 +22,8 @@ exports.plugin = function plugin(forum) {
     function activate() {
         return Promise.all([
             forum.Commands.add('addPoll', 'Add a poll. One per channel. ' +
-                'Usage: "!addPoll where shold we go for lunch?: Applebees TGI_Fridays Nowhere', addPoll),
-            forum.Commands.add('vote', 'Vote in a current poll. Usage: "!vote Applebees', vote),
+                'Usage: `!addPoll where shold we go for lunch?: Applebees TGI_Fridays Nowhere`', addPoll),
+            forum.Commands.add('vote', 'Vote in a current poll. Usage: `!vote Applebees`', vote),
             forum.Commands.add('closePoll', 'Close the poll in this room. Creator of poll only.', endPoll),
             forum.Commands.addAlias('endPoll', endPoll),
             forum.Commands.addAlias('close', endPoll),
