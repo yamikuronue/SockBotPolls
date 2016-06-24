@@ -1,6 +1,6 @@
 {
   "name": "sockpolls",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Polling for sockbot",
   "main": "src/sockpolls.js",
   "directories": {
