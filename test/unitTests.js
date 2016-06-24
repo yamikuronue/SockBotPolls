@@ -85,6 +85,7 @@ describe('sockPolls', () => {
                 sockPolls.polls.someChannel.question.should.equal('who is better:');
                 Object.keys(sockPolls.polls.someChannel.options).should.contain('accalia');
                 Object.keys(sockPolls.polls.someChannel.options).should.contain('yamikuronue');
+                Object.keys(sockPolls.polls.someChannel.options).should.not.contain('better:');
             });
         });
     });
@@ -107,7 +108,6 @@ describe('sockPolls', () => {
             return sockPolls.vote(command).then(() => {
                 command.reply.firstCall.args[0].should.equal('Your vote has been registered');
                 sockPolls.polls.someChannel.options.vanilla.should.equal(1);
-               
             });
         });
         
@@ -116,6 +116,15 @@ describe('sockPolls', () => {
             return sockPolls.vote(command).then(() => {
                 sockPolls.polls.someChannel.options.vanilla.should.equal(0);
                 sockPolls.polls.someChannel.options.chocolate.should.equal(1);
+            });
+        });
+        
+         it('Should not be case sensitive', () => {
+            command.args = ['vaNiLlA'];
+            return sockPolls.vote(command).then(() => {
+                command.reply.firstCall.args[0].should.equal('Your vote has been registered');
+                sockPolls.polls.someChannel.options.vanilla.should.equal(1);
+               
             });
         });
         

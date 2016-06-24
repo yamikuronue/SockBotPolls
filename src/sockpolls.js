@@ -21,9 +21,13 @@ exports.plugin = function plugin(forum) {
      */
     function activate() {
         return Promise.all([
-            forum.Commands.add('addPoll', 'Add a poll. One per channel. Usage: "!addPoll where shold we go for lunch?: Applebees TGI_Fridays Nowhere', addPoll),
+            forum.Commands.add('addPoll', 'Add a poll. One per channel. ' +
+                'Usage: "!addPoll where shold we go for lunch?: Applebees TGI_Fridays Nowhere', addPoll),
             forum.Commands.add('vote', 'Vote in a current poll. Usage: "!vote Applebees', vote),
-            forum.Commands.add('closePoll', 'Close the poll in this room. Creator of poll only.', endPoll)
+            forum.Commands.add('closePoll', 'Close the poll in this room. Creator of poll only.', endPoll),
+            forum.Commands.addAlias('endPoll', endPoll),
+            forum.Commands.addAlias('close', endPoll),
+            forum.Commands.addAlias('poll', addPoll)
         ]);
     }
 
@@ -50,15 +54,17 @@ function addPoll(command) {
             if (!answers && command.args[i]  === ':') {
                 question = command.args.slice(0, i).join(' ') + ':';
                 answers = true;
+                continue;
             }
             
             if (!answers && command.args[i].substr(command.args[i].length - 1) === ':') {
                 question = command.args.slice(0, i + 1).join(' ');
                 answers = true;
+                continue;
             }
             
             if (answers) {
-                options[command.args[i]] = 0;
+                options[command.args[i].toLowerCase()] = 0;
             }
         }
         
@@ -75,7 +81,7 @@ function addPoll(command) {
 }
 
 function vote(command) {
-    const option = command.args[0];
+    const option = command.args[0].toLowerCase();
     const polls = exports.polls;
     
      return command.getPost().then((post) => {
