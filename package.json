@@ -13,6 +13,7 @@
     "eslint": "^2.13.1",
     "istanbul": "^0.4.4",
     "mocha": "^2.5.3",
+    "publish-please": "^2.1.4",
     "sinon": "^1.17.4",
     "sinon-as-promised": "^4.0.0"
   },
@@ -21,7 +22,9 @@
     "test": "eslint . && npm run unit_tests",
     "istanbul": "eslint .; istanbul cover node_modules/mocha/bin/_mocha -- --recursive -R nyan",
     "mocha": "eslint .;mocha --recursive -R nyan",
-    "unit_tests": "istanbul cover node_modules/mocha/bin/_mocha --print both -- ./test/unitTests.js --recursive -R dot "
+    "unit_tests": "istanbul cover node_modules/mocha/bin/_mocha --print both -- ./test/unitTests.js --recursive -R dot ",
+    "publish-please": "publish-please",
+    "prepublish": "publish-please guard"
   },
   "repository": {
     "type": "git",
