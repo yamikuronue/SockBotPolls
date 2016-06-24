@@ -51,6 +51,19 @@ describe('sockPolls', () => {
             });
         });
         
+        it('Should not create a poll without options', () => {
+            command.args = ['hi'];
+
+            return sockPolls.addPoll(command).then(() => {
+                //output
+                command.reply.called.should.be.true;
+                command.reply.firstCall.args[0].should.equal('That is not a valid poll.');
+
+                //Internal state
+                Object.keys(sockPolls.polls).should.not.contain('someChannel');
+            });
+        });
+        
         it('Should not create a poll in a chan with a poll', () => {
             command.args = ['who', 'is', 'better:', 'accalia', 'yamikuronue'];
             sockPolls.polls.someChannel = {};

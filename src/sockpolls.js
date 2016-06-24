@@ -68,6 +68,10 @@ function addPoll(command) {
             }
         }
         
+        if (Object.keys(options).length <= 0) {
+            return command.reply('That is not a valid poll.');
+        }
+        
         exports.polls[chan] =  {
             question: question,
             creator: post.authorId,
